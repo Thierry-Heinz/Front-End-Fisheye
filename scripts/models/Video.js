@@ -24,7 +24,12 @@ class Video {
 		</header>
 		<footer class="media-card__footer">
 			<h4 class="title" id="${this._title}" >${this._title}</h4>
-      <div class="likes">${this._likes}</div>
+      <div class="likes">
+        <span class="likes-number">
+        ${this._likes}
+        </span>
+        <img class="likes-icon" src="/assets/icons/heart.svg" />
+      </div>
 		</footer>
 	`;
     $wrapper.innerHTML = videoCard;

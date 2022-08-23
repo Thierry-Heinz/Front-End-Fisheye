@@ -20,14 +20,9 @@ async function displayMedias(allMedias, photographerCurrentId) {
   );
   const Medias = filteredMedia.map((media) => new MediaFactory(media));
 
-  console.log(Medias);
-
   Medias.forEach((media) => {
-    console.log(media);
     mediaWrapper.appendChild(media.createCard());
   });
-
-  console.log(filteredMedia);
 }
 
 async function init() {

@@ -54,7 +54,7 @@
   justify-content: center;
   &__header {
     display: block;
-    height: 300px;
+    height: 500px;
     width: 100%;
   }
   &__footer {
@@ -71,8 +71,10 @@
     }
     .likes {
       color: $darkest;
-      font-size: em(16px);
+      font-size: em(16);
       font-weight: 400;
+      display: flex;
+      gap: 10px;
     }
   }
 }

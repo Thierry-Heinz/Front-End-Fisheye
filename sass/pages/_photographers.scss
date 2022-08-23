@@ -46,5 +46,5 @@
 .photograph-media {
   margin: 100px;
 
-  @include threeCol($rowGap: 30px, $colGap: 100px);
+  @include threeCol($rowGap: 50px, $colGap: 100px);
 }
