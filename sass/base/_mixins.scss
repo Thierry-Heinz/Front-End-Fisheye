@@ -1,0 +1,20 @@
+@mixin threeCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $gap;
+}
+
+@mixin centered-content {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin spaced-content {
+  justify-self: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}

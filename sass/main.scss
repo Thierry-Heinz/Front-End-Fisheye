@@ -1,0 +1,23 @@
+/**
+*
+* Sass 7-1 pattern
+*
+**/
+
+@import "utils/variables";
+
+@import "base/reset";
+@import "base/typography";
+@import "base/mixins";
+
+@import "layout/header";
+@import "layout/grid";
+@import "layout/forms";
+
+@import "components/buttons";
+@import "components/dropdown";
+@import "components/modal";
+@import "components/carroussel";
+
+@import "pages/index";
+@import "pages/photographers";
