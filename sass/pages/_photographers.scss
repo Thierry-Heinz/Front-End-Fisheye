@@ -1,1 +1,50 @@
 /** Photographers **/
+
+// Header
+.photograph-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: $grey-bckg;
+  height: 300px;
+  margin: 0 100px;
+
+  &__text {
+    * {
+      margin: 0;
+      padding: 0;
+      font-weight: 400;
+    }
+    .name {
+      font-size: em(64);
+      color: $primary-text;
+    }
+    .location {
+      font-size: em(24);
+      color: $red-text;
+    }
+    .slogan {
+      font-size: em(18px);
+      color: $grey-text;
+    }
+  }
+
+  .portrait {
+    border-radius: $rounded;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+//Media
+.photograph-media {
+  margin: 100px;
+
+  @include threeCol($rowGap: 30px, $colGap: 100px);
+}

@@ -74,5 +74,29 @@ function photographerFactory(data) {
     return card;
   }
 
-  return { name, picture, getUserCardDOM };
+  const createHeaderText = () => {
+    const div = document.createElement("div");
+    div.classList.add("photograph-header__text");
+
+    const photographerName = createPhotographerName();
+    const location = createLocation();
+    const slogan = createSlogan();
+
+    div.append(photographerName, location, slogan);
+
+    return div;
+  };
+
+  function getUserHeaderDOM(wrapper) {
+    const button = wrapper.querySelector(".contact_button");
+    const headerText = createHeaderText();
+    const headerPortrait = createPortrait();
+
+    button.before(headerText);
+    button.after(headerPortrait);
+
+    // return header;
+  }
+
+  return { name, picture, getUserCardDOM, getUserHeaderDOM };
 }

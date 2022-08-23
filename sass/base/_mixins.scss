@@ -1,9 +1,14 @@
 /** Mixins **/
 
-@mixin threeCol {
+@mixin threeCol($rowGap: $gap, $colGap: $gap) {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: $gap;
+  @if $rowGap {
+    row-gap: $rowGap;
+  }
+  @if $colGap {
+    column-gap: $colGap;
+  }
 }
 
 @mixin centered-content {
