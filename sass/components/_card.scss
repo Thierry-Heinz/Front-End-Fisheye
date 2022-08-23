@@ -1,1 +1,47 @@
 /** Cards **/
+.card__photographer {
+  @include centered-content;
+  .card__header {
+    @include centered-content;
+    text-decoration: none;
+    .portrait {
+      border-radius: $rounded;
+      object-fit: cover;
+      object-position: center;
+      height: 200px;
+      width: 200px;
+    }
+    .name {
+      color: $primary-text;
+      font-weight: 400;
+      font-size: em(34);
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .card__body {
+    @include centered-content;
+    text-align: center;
+    .location,
+    .slogan,
+    .quote {
+      margin: 0;
+      padding: 0;
+    }
+    .location {
+      font-weight: 400;
+      font-size: em(13);
+      color: $red-text;
+    }
+    .slogan {
+      font-weight: 400;
+      font-size: em(10);
+      color: $darkest;
+    }
+    .quote {
+      font-weight: 400;
+      font-size: em(9);
+      color: $other-grey;
+    }
+  }
+}

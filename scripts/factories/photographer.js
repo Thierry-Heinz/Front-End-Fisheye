@@ -3,43 +3,74 @@ function photographerFactory(data) {
 
   const picture = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM() {
+  const createCard = () => {
     const article = document.createElement("article");
-    article.classList.add("photographer-card");
+    article.classList.add("card", "card__photographer");
     article.ariaLabel = "Photographer Card";
     article.setAttribute("aria-labelledby", name);
+    return article;
+  };
 
+  const createCardHeader = () => {
     const link = document.createElement("a");
-    link.classList.add("photographer-card__header");
+    link.classList.add("card__header");
     link.href = `/photographer.html?id=${id}`;
-
+    return link;
+  };
+  const createPortrait = () => {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.alt = name;
     img.classList.add("portrait", "rounded");
+    return img;
+  };
+  const createPhotographerName = () => {
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    h2.classList.add("name");
+    h2.id = name;
+    return h2;
+  };
 
-    const cardBody = document.createElement("div");
-    cardBody.classList.add("photographer-card__body");
+  const createCardBody = () => {
+    const div = document.createElement("div");
+    div.classList.add("card__body");
+    return div;
+  };
+  const createLocation = () => {
+    const h3 = document.createElement("h3");
+    h3.classList.add("location");
+    h3.textContent = `${city}, ${country}`;
+    return h3;
+  };
+  const createSlogan = () => {
+    const p = document.createElement("p");
+    p.classList.add("slogan");
+    p.textContent = tagline;
+    return p;
+  };
+  const createQuote = () => {
+    const p = document.createElement("p");
+    p.classList.add("quote");
+    p.textContent = `${price}€/jour`;
+    return p;
+  };
 
-    const photographerName = document.createElement("h2");
-    photographerName.textContent = name;
-    photographerName.classList.add("name");
-    photographerName.id = name;
+  function getUserCardDOM() {
+    const card = createCard();
+    const cardHeader = createCardHeader();
+    const cardBody = createCardBody();
+    const img = createPortrait();
+    const photographerName = createPhotographerName();
+    const location = createLocation();
+    const slogan = createSlogan();
+    const quote = createQuote();
 
-    const location = document.createElement("h3");
-    location.textContent = `${city}, ${country}`;
-
-    const slogan = document.createElement("p");
-    slogan.textContent = tagline;
-
-    const quote = document.createElement("p");
-    quote.textContent = `${price}/jour`;
-
-    link.append(img, photographerName);
+    cardHeader.append(img, photographerName);
     cardBody.append(location, slogan, quote);
-    article.append(link, cardBody);
+    card.append(cardHeader, cardBody);
 
-    return article;
+    return card;
   }
 
   return { name, picture, getUserCardDOM };

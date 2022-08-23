@@ -3,28 +3,31 @@
 * Sass 7-1 pattern
 *
 **/
+/**
+*
+* Variables
+*
+**/
 /** Brand colors **/
 /** Utils **/
+/** Reset **/
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
 }
 
-h1 {
-  color: #901c1c;
-  margin-right: 100px;
-}
-
-h2 {
-  color: #d3573c;
-}
-
+/** Mixins **/
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 90px;
+}
+
+h1 {
+  color: #901c1c;
+  margin-right: 100px;
 }
 
 .logo {
@@ -38,6 +41,7 @@ header {
   margin: 0 100px;
 }
 
+/** Forms **/
 form {
   display: flex;
   width: 100%;
@@ -65,6 +69,7 @@ form input {
   border-radius: 5px;
 }
 
+/** buttons **/
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -78,6 +83,67 @@ form input {
   cursor: pointer;
 }
 
+/** Dropdown **/ /** Cards **/
+.card__photographer {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.card__photographer .card__header {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+}
+.card__photographer .card__header .portrait {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  height: 200px;
+  width: 200px;
+}
+.card__photographer .card__header .name {
+  color: #d3573c;
+  font-weight: 400;
+  font-size: 2.125em;
+  padding: 0;
+  margin: 0;
+}
+.card__photographer .card__body {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.card__photographer .card__body .location,
+.card__photographer .card__body .slogan,
+.card__photographer .card__body .quote {
+  margin: 0;
+  padding: 0;
+}
+.card__photographer .card__body .location {
+  font-weight: 400;
+  font-size: 0.8125em;
+  color: #901c1c;
+}
+.card__photographer .card__body .slogan {
+  font-weight: 400;
+  font-size: 0.625em;
+  color: #000000;
+}
+.card__photographer .card__body .quote {
+  font-weight: 400;
+  font-size: 0.5625em;
+  color: #757575;
+}
+
+/** Modal **/
 #contact_modal {
   display: none;
 }
@@ -109,6 +175,7 @@ form input {
   text-align: center;
 }
 
+/** Carrousel **/ /** Homepage **/
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -116,21 +183,6 @@ form input {
   margin-top: 100px;
 }
 
-.photographer_section article {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.photographer_section article h2 {
-  font-size: 36px;
-}
-
-.photographer_section article img {
-  height: 200px;
-  width: 200px;
-}
+/** Photographers **/
 
 /*# sourceMappingURL=style.css.map */
