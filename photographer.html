@@ -12,7 +12,13 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" alt="FishEye Home Page" class="logo" />
+      <a aria-label="Retourner vers la page d'accueil" href="/index.html">
+        <img
+          src="assets/images/logo.png"
+          alt="FishEye Home Page"
+          class="logo"
+        />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -23,11 +29,17 @@
     </main>
     <div id="contact_modal">
       <div class="modal">
-        <header>
+        <header class="modal__header">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img
+            class="close"
+            alt="close"
+            aria-label="Fermer la fenêtre"
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+          />
         </header>
-        <form>
+        <form class="modal__form">
           <div>
             <label>Prénom</label>
             <input />

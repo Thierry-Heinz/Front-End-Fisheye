@@ -159,20 +159,17 @@ form input {
   padding: 35px;
   margin: auto;
 }
-
-.modal header {
+.modal__header {
   justify-content: space-between;
   width: 100%;
 }
-
-.modal header img {
-  cursor: pointer;
-}
-
-.modal header h2 {
+.modal__header h2 {
   font-size: 64px;
   font-weight: normal;
   text-align: center;
+}
+.modal__header .close {
+  cursor: pointer;
 }
 
 /** Carrousel **/ /** Homepage **/

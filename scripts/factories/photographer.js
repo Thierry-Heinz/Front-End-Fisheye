@@ -15,6 +15,7 @@ function photographerFactory(data) {
     const link = document.createElement("a");
     link.classList.add("card__header");
     link.href = `/photographer.html?id=${id}`;
+    link.ariaLabel = `Voir la page du photographe ${name}`;
     return link;
   };
   const createPortrait = () => {
