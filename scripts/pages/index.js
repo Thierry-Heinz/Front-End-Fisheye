@@ -1,3 +1,9 @@
+async function getPhotographers() {
+  // Récupère les datas des photographes
+  const photographersApi = new PhotographersApi("/data/photographers.json");
+  return await photographersApi.getPhotographers();
+}
+
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
@@ -9,9 +15,7 @@ async function displayData(photographers) {
 }
 
 async function init() {
-  // Récupère les datas des photographes
-  const photographersApi = new PhotographersApi("/data/photographers.json");
-  const photographers = await photographersApi.getPhotographers();
+  const photographers = await getPhotographers();
   displayData(photographers);
 }
 
