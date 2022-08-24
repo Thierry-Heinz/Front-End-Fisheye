@@ -168,6 +168,11 @@ form input {
   display: flex;
   gap: 10px;
 }
+.media-card__footer .likes .heart-icon {
+  fill: #901c1c;
+  width: 19px;
+  height: 19px;
+}
 
 .image-card .image-card__link {
   display: block;
@@ -222,7 +227,29 @@ form input {
   cursor: pointer;
 }
 
-/** Carrousel **/ /** Homepage **/
+/** Carrousel **/
+.notification {
+  position: fixed;
+  bottom: 0;
+  right: 36px;
+  background-color: #db8876;
+  border-radius: 5px 5px 0 0;
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 70px;
+  padding: 21px 34px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+.notification .heart-icon {
+  width: 24px;
+  height: 24px;
+  fill: #000000;
+}
+
+/** Homepage **/
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -275,6 +302,13 @@ form input {
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 50px;
   column-gap: 100px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
 }
 
 /*# sourceMappingURL=style.css.map */

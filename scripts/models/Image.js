@@ -15,7 +15,7 @@ class Image {
     $wrapper.ariaLabel = "Photo Card";
     $wrapper.setAttribute("aria-labelledby", this._title);
 
-    const imageCard = `
+    const $imageCard = `
     <header class="image-card__thumbnail media-card__header">
 		  <a class="image-card__link" href="#">
 			  <img class="image" alt="${this._title}" src="/assets/medias/${this._image}" />
@@ -27,11 +27,14 @@ class Image {
         <span class="likes-number">
         ${this._likes}
         </span>
-        <img class="likes-icon" src="/assets/icons/heart.svg" />
+        <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
+          <title id="heartTitle">Icône de Coeur</title>
+          <use xlink:href="#heart" ></use>
+        </svg>
       </div>
 		</footer>
 	`;
-    $wrapper.innerHTML = imageCard;
+    $wrapper.innerHTML = $imageCard;
     return $wrapper;
   }
 }

@@ -45,6 +45,12 @@
 //Media
 .photograph-media {
   margin: 100px;
-
   @include threeCol($rowGap: 50px, $colGap: 100px);
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
 }

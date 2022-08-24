@@ -75,6 +75,11 @@
       font-weight: 400;
       display: flex;
       gap: 10px;
+      .heart-icon {
+        fill: $red-text;
+        width: 19px;
+        height: 19px;
+      }
     }
   }
 }

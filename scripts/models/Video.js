@@ -12,10 +12,10 @@ class Video {
     const $wrapper = document.createElement("div");
     $wrapper.classList.add("media-card", "video-card");
 
-    $wrapper.ariaLabel = "Photo Card";
+    $wrapper.ariaLabel = "Video Card";
     $wrapper.setAttribute("aria-labelledby", this._title);
 
-    const videoCard = `
+    const $videoCard = `
 		<header class="video-card__thumbnail media-card__header">
 			<video controls class="video"
         <source src="/assets/medias/${this._video}" type="video/mp4">
@@ -28,11 +28,14 @@ class Video {
         <span class="likes-number">
         ${this._likes}
         </span>
-        <img class="likes-icon" src="/assets/icons/heart.svg" />
+        <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
+          <title id="heartTitle">Icône de Coeur</title>
+          <use xlink:href="#heart" ></use>
+        </svg>
       </div>
 		</footer>
 	`;
-    $wrapper.innerHTML = videoCard;
+    $wrapper.innerHTML = $videoCard;
     return $wrapper;
   }
 }

@@ -1,0 +1,20 @@
+.notification {
+  position: fixed;
+  bottom: 0;
+  right: 36px;
+  background-color: $tertiary;
+  border-radius: $border-radius $border-radius 0 0;
+  color: $darkest;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 70px;
+  padding: 21px 34px;
+  font-size: em(24);
+  font-weight: 500;
+  .heart-icon {
+    width: 24px;
+    height: 24px;
+    fill: $darkest;
+  }
+}

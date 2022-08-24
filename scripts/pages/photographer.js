@@ -4,21 +4,15 @@ async function getPhotographers() {
   return await photographersApi.getPhotographers();
 }
 
-async function displayPhotographer(photographers, photographerCurrentId) {
+async function displayPhotographer(currentPhotographer) {
   const photographWrapper = document.querySelector(".photograph-header");
-  const photographer = photographers.find(
-    (el) => el.id == photographerCurrentId
-  );
-  const photographerModel = photographerFactory(photographer);
+  const photographerModel = photographerFactory(currentPhotographer);
   photographerModel.getUserHeaderDOM(photographWrapper);
 }
 
-async function displayMedias(allMedias, photographerCurrentId) {
+async function displayMedias(photographerMedias) {
   const mediaWrapper = document.querySelector(".photograph-media");
-  const filteredMedia = allMedias.filter(
-    (el) => el.photographerId == photographerCurrentId
-  );
-  const Medias = filteredMedia.map((media) => new MediaFactory(media));
+  const Medias = photographerMedias.map((media) => new MediaFactory(media));
 
   Medias.forEach((media) => {
     mediaWrapper.appendChild(media.createCard());
@@ -33,8 +27,15 @@ async function init() {
   const mediasApi = new MediaApi("/data/photographers.json");
   const medias = await mediasApi.getMedias();
 
-  displayPhotographer(photographers, id);
-  displayMedias(medias, id);
+  displayPhotographer(findById(photographers, id));
+  displayMedias(filterByPhotographerId(medias, id));
+
+  changeTitlePage(findById(photographers, id).name);
+  displayNotification(
+    filterByPhotographerId(medias, id),
+    findById(photographers, id).price,
+    findById(photographers, id).name
+  );
 }
 
 init();
