@@ -76,9 +76,16 @@
       display: flex;
       gap: 10px;
       .heart-icon {
-        fill: $red-text;
+        fill: $lightest;
+        stroke: $red-text;
+        stroke-width: 2px;
         width: 19px;
         height: 19px;
+        cursor: pointer;
+        padding-top: 2px;
+        &.liked {
+          fill: $red-text;
+        }
       }
     }
   }

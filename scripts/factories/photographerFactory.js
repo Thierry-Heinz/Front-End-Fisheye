@@ -1,7 +1,20 @@
-function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
+function photographerFactory(data, photographerMedias) {
+  /***
+   *
+   * Defining variables
+   *
+   *  */
 
+  const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/photographers/${portrait}`;
+
+  console.log(photographerMedias);
+
+  /***
+   *
+   * Defining element creation functions
+   *
+   *  */
 
   const createCard = () => {
     const $article = document.createElement("article");
@@ -57,6 +70,25 @@ function photographerFactory(data) {
     return $p;
   };
 
+  const createHeaderText = () => {
+    const div = document.createElement("div");
+    div.classList.add("photograph-header__text");
+
+    const photographerName = createPhotographerName();
+    const location = createLocation();
+    const slogan = createSlogan();
+
+    div.append(photographerName, location, slogan);
+
+    return div;
+  };
+
+  /***
+   *
+   * Defining get methods
+   *
+   *  */
+
   function getUserCardDOM() {
     const $card = createCard();
     const $cardHeader = createCardHeader();
@@ -74,29 +106,62 @@ function photographerFactory(data) {
     return $card;
   }
 
-  const createHeaderText = () => {
-    const div = document.createElement("div");
-    div.classList.add("photograph-header__text");
-
-    const photographerName = createPhotographerName();
-    const location = createLocation();
-    const slogan = createSlogan();
-
-    div.append(photographerName, location, slogan);
-
-    return div;
-  };
-
-  function getUserHeaderDOM(wrapper) {
-    const button = wrapper.querySelector(".contact_button");
+  function getUserHeaderDOM($wrapper) {
+    const button = $wrapper.querySelector(".contact_button");
     const headerText = createHeaderText();
     const headerPortrait = createPortrait();
 
     button.before(headerText);
     button.after(headerPortrait);
-
-    // return header;
   }
 
-  return { name, picture, getUserCardDOM, getUserHeaderDOM };
+  /**
+   *
+   * Photographer single page modification functions
+   *
+   */
+
+  const changeTitlePagePhotographer = () =>
+    (document.title = `FishEye - Photographe ${name}`);
+  const updateContactModalTitle = () =>
+    (document.getElementById(
+      "modal-title"
+    ).innerHTML = `Contactez-moi ${name}`);
+
+  function stickyNotification() {
+    const likesSum = photographerMedias.reduce(
+      (acc, curr) => acc + curr.likes,
+      0
+    );
+
+    const $body = document.querySelector("body");
+    const $notification = document.createElement("div");
+    $notification.classList.add("notification");
+    $notification.ariaLabel = `Informations sur ${name}`;
+
+    const $likes = `
+    <div class="likes" aria-label="likes de ${name}">
+      <span class="likes-number">${likesSum}</span>
+      <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
+          <title id="heartTitle">${likesSum} Likes</title>
+          <use xlink:href="#heart" ></use>
+        </svg>
+    </div>
+    `;
+
+    const $quote = `<span aria-label="tarif de ${name}" class="quote">${price}€/jour</span>`;
+    $notification.innerHTML = $likes + $quote;
+
+    $body.appendChild($notification);
+  }
+
+  return {
+    name,
+    picture,
+    getUserCardDOM,
+    getUserHeaderDOM,
+    changeTitlePagePhotographer,
+    updateContactModalTitle,
+    stickyNotification,
+  };
 }

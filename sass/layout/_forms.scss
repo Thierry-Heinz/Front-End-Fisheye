@@ -9,7 +9,9 @@ form {
 
 form label {
   color: $label-color;
-  font-size: 36px;
+  font-size: em(36);
+  font-weight: 400;
+  margin-top: 10px;
 }
 
 form div {
@@ -25,4 +27,15 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+  font-size: em(24);
+  padding: 5px;
+}
+
+form textarea {
+  width: 100%;
+  font-size: em(24);
+  height: 68px;
+  border-radius: $border-radius;
+  border: none;
+  padding: 5px;
 }

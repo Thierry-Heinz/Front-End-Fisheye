@@ -1,18 +1,15 @@
-const $main = document.querySelector("#main");
-const $form = document.querySelector(".modal__form");
-const $modal = document.getElementById("contact_modal");
+/* const $main = document.querySelector("#main");
+const $lightbox = document.getElementById("lightbox_modal");
 
-const $openButton = document.querySelector(".contact_button");
-const $closeButton = document.querySelector(".close_button");
 
-function displayModal() {
+function displayLightbox() {
   $main.setAttribute("aria-hidden", "true");
   $modal.style.display = "block";
   $modal.setAttribute("aria-hidden", "false");
   $closeButton.focus();
 }
 
-function closeModal() {
+function closeLightbox() {
   $main.setAttribute("aria-hidden", "false");
   $modal.style.display = "none";
   $modal.setAttribute("aria-hidden", "true");
@@ -34,6 +31,7 @@ function logModal() {
 
   setTimeout(closeModal(), 1000);
 }
+*/
 
 $openButton.addEventListener("click", (e) => {
   e.preventDefault();

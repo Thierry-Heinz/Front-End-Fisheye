@@ -7,6 +7,8 @@
   height: 100%;
   top: 0;
   left: 0;
+  background-color: rgba($grey-bckg, 0.5);
+  z-index: 200;
 }
 
 .modal {
@@ -17,21 +19,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  top: 50px;
   padding: 35px;
-  margin: auto;
+  margin: 50px auto auto auto;
 
   &__header {
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 30px;
 
     h2 {
       font-size: 64px;
       font-weight: normal;
-      text-align: center;
+      text-align: left;
+      line-height: 1;
     }
 
-    .close {
+    .close_button {
       cursor: pointer;
+      background: none;
+      border: none;
     }
   }
 }

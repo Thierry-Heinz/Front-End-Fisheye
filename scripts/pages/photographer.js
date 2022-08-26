@@ -1,41 +1,41 @@
-async function getPhotographers() {
-  // Récupère les datas des photographes
-  const photographersApi = new PhotographersApi("/data/photographers.json");
-  return await photographersApi.getPhotographers();
-}
+const findById = (array, currentId) => array.find((el) => el.id == currentId);
 
-async function displayPhotographer(currentPhotographer) {
-  const photographWrapper = document.querySelector(".photograph-header");
-  const photographerModel = photographerFactory(currentPhotographer);
-  photographerModel.getUserHeaderDOM(photographWrapper);
-}
-
-async function displayMedias(photographerMedias) {
-  const mediaWrapper = document.querySelector(".photograph-media");
-  const Medias = photographerMedias.map((media) => new MediaFactory(media));
-
-  Medias.forEach((media) => {
-    mediaWrapper.appendChild(media.createCard());
-  });
-}
+const filterByPhotographerId = (array, currentId) =>
+  array.filter((el) => el.photographerId == currentId);
 
 async function init() {
+  //Retrieve the id in the urlParams
   const id = new GetParamId(window.location.search).getId();
-  const photographersApi = new PhotographersApi("/data/photographers.json");
-  const photographers = await photographersApi.getPhotographers();
 
+  // Retrieve and display all the media of the single photographer
   const mediasApi = new MediaApi("/data/photographers.json");
   const medias = await mediasApi.getMedias();
 
-  displayPhotographer(findById(photographers, id));
-  displayMedias(filterByPhotographerId(medias, id));
-
-  changeTitlePage(findById(photographers, id).name);
-  displayNotification(
-    filterByPhotographerId(medias, id),
-    findById(photographers, id).price,
-    findById(photographers, id).name
+  const photographerMedias = filterByPhotographerId(medias, id);
+  const $mediaWrapper = document.querySelector(".photograph-media");
+  const MediasObj = photographerMedias.map(
+    (media, index) => new MediaFactory(media, index)
   );
+
+  console.log(MediasObj);
+  MediasObj.forEach((media) => {
+    $mediaWrapper.appendChild(media.createCard("image", media._src));
+  });
+
+  // Retrieve and display all the single photographer informations
+  const photographersApi = new PhotographersApi("/data/photographers.json");
+  const photographers = await photographersApi.getPhotographers();
+
+  const currentPhotographer = findById(photographers, id);
+  const $photographHeader = document.querySelector(".photograph-header");
+  const photographerModel = photographerFactory(currentPhotographer, MediasObj);
+
+  photographerModel.getUserHeaderDOM($photographHeader);
+  photographerModel.changeTitlePagePhotographer();
+  photographerModel.updateContactModalTitle();
+  photographerModel.stickyNotification();
+
+  // populateLightbox(filterByPhotographerId(medias, id));
 }
 
 init();
