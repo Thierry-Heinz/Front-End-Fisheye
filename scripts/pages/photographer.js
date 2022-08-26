@@ -1,41 +1,53 @@
-const findById = (array, currentId) => array.find((el) => el.id == currentId);
-
-const filterByPhotographerId = (array, currentId) =>
-  array.filter((el) => el.photographerId == currentId);
-
 async function init() {
-  //Retrieve the id in the urlParams
+  //Retrieve the photograph id in the urlParams
   const id = new GetParamId(window.location.search).getId();
 
-  // Retrieve and display all the media of the single photographer
+  // Retrieve all the medias
   const mediasApi = new MediaApi("/data/photographers.json");
   const medias = await mediasApi.getMedias();
 
-  const photographerMedias = filterByPhotographerId(medias, id);
-  const $mediaWrapper = document.querySelector(".photograph-media");
-  const MediasObj = photographerMedias.map(
-    (media, index) => new MediaFactory(media, index)
-  );
-
-  console.log(MediasObj);
-  MediasObj.forEach((media) => {
-    $mediaWrapper.appendChild(media.createCard("image", media._src));
-  });
-
-  // Retrieve and display all the single photographer informations
+  // Retrieve all the photographers
   const photographersApi = new PhotographersApi("/data/photographers.json");
   const photographers = await photographersApi.getPhotographers();
 
-  const currentPhotographer = findById(photographers, id);
-  const $photographHeader = document.querySelector(".photograph-header");
-  const photographerModel = photographerFactory(currentPhotographer, MediasObj);
+  // Find the right photographer based on the photograph id
+  const currentPhotographer = photographers.find((el) => el.id == id);
+  // Filter all the media based on the id
+  const photographerMedias = medias.filter((el) => el.photographerId == id);
 
-  photographerModel.getUserHeaderDOM($photographHeader);
+  // Reference the Media wrapper
+  const $mediaWrapper = document.querySelector(".photograph-media");
+  // Reference the lightbox content wrapper
+  const $lightboxContentWrapper = document.querySelector(".lightbox-content");
+
+  // Calculate the sum of likes of all the media for the photograph
+  const photographerLikesSum = photographerMedias.reduce(
+    (acc, curr) => acc + curr.likes,
+    0
+  );
+
+  // Instanciate the photograph model
+  const photographerModel = photographerFactory(
+    currentPhotographer,
+    photographerLikesSum
+  );
+
+  //Instanciate the media (and sort between Image and Video via the MediaFactory)
+  const MediasObj = photographerMedias.map(
+    (media, index) => new MediaFactory(media, index, photographerModel)
+  );
+
+  // populate the media gallery and the lightbox
+  MediasObj.forEach((media) => {
+    $mediaWrapper.appendChild(media.createCard());
+    $lightboxContentWrapper.appendChild(media.createSlide());
+  });
+
+  // Call all the methods to display the photograph Infos
+  photographerModel.getUserHeaderDOM();
   photographerModel.changeTitlePagePhotographer();
   photographerModel.updateContactModalTitle();
   photographerModel.stickyNotification();
-
-  // populateLightbox(filterByPhotographerId(medias, id));
 }
 
 init();

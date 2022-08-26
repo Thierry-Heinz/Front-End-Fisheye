@@ -75,16 +75,22 @@
       font-weight: 400;
       display: flex;
       gap: 10px;
-      .heart-icon {
-        fill: $lightest;
-        stroke: $red-text;
-        stroke-width: 2px;
-        width: 19px;
-        height: 19px;
-        cursor: pointer;
-        padding-top: 2px;
+      .like-button {
+        background: none;
+        border: none;
+        .heart-icon {
+          fill: $lightest;
+          stroke: $red-text;
+          stroke-width: 2px;
+          width: 19px;
+          height: 19px;
+          cursor: pointer;
+          padding-top: 2px;
+        }
         &.liked {
-          fill: $red-text;
+          .heart-icon {
+            fill: $red-text;
+          }
         }
       }
     }

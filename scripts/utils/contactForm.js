@@ -51,19 +51,7 @@ document.body.addEventListener("keydown", (e) => {
     closeModal();
   }
 });
-/*
-document.body.addEventListener("keypress", (e) => {
-  console.log(document.activeElement);
-  console.log(e.key);
-  if (
-    $modal.getAttribute("aria-hidden") == "false" &&
-    document.activeElement === $closeButton &&
-    e.key == "Enter"
-  ) {
-    closeModal();
-  }
-});
-*/
+
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
   logModal();

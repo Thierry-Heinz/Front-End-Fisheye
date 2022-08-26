@@ -182,7 +182,11 @@ form textarea {
   display: flex;
   gap: 10px;
 }
-.media-card__footer .likes .heart-icon {
+.media-card__footer .likes .like-button {
+  background: none;
+  border: none;
+}
+.media-card__footer .likes .like-button .heart-icon {
   fill: #ffffff;
   stroke: #901c1c;
   stroke-width: 2px;
@@ -191,7 +195,7 @@ form textarea {
   cursor: pointer;
   padding-top: 2px;
 }
-.media-card__footer .likes .heart-icon.liked {
+.media-card__footer .likes .like-button.liked .heart-icon {
   fill: #901c1c;
 }
 
@@ -215,7 +219,7 @@ form textarea {
 }
 
 /** Modal **/
-#contact_modal {
+.modal-container {
   display: none;
   position: absolute;
   width: 100%;

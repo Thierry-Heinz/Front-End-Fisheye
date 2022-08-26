@@ -1,4 +1,4 @@
-function photographerFactory(data, photographerMedias) {
+function photographerFactory(data, likesSum) {
   /***
    *
    * Defining variables
@@ -8,7 +8,7 @@ function photographerFactory(data, photographerMedias) {
   const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/photographers/${portrait}`;
 
-  console.log(photographerMedias);
+  const $notification = document.createElement("div");
 
   /***
    *
@@ -106,8 +106,8 @@ function photographerFactory(data, photographerMedias) {
     return $card;
   }
 
-  function getUserHeaderDOM($wrapper) {
-    const button = $wrapper.querySelector(".contact_button");
+  function getUserHeaderDOM() {
+    const button = document.querySelector(".contact_button");
     const headerText = createHeaderText();
     const headerPortrait = createPortrait();
 
@@ -129,13 +129,7 @@ function photographerFactory(data, photographerMedias) {
     ).innerHTML = `Contactez-moi ${name}`);
 
   function stickyNotification() {
-    const likesSum = photographerMedias.reduce(
-      (acc, curr) => acc + curr.likes,
-      0
-    );
-
     const $body = document.querySelector("body");
-    const $notification = document.createElement("div");
     $notification.classList.add("notification");
     $notification.ariaLabel = `Informations sur ${name}`;
 
@@ -155,13 +149,31 @@ function photographerFactory(data, photographerMedias) {
     $body.appendChild($notification);
   }
 
+  function counterPhotographerLikes(operation) {
+    if (operation == "minus") {
+      likesSum -= 1;
+    } else if (operation == "plus") {
+      likesSum += 1;
+    } else {
+      throw "Unknown operation";
+    }
+    updatePhotographerLikes();
+  }
+  function updatePhotographerLikes() {
+    const $notificationLikesWrapper =
+      $notification.querySelector(".likes-number");
+    $notificationLikesWrapper.innerText = likesSum;
+  }
+
   return {
     name,
     picture,
+    likesSum,
     getUserCardDOM,
     getUserHeaderDOM,
     changeTitlePagePhotographer,
     updateContactModalTitle,
     stickyNotification,
+    counterPhotographerLikes,
   };
 }
