@@ -1,0 +1,69 @@
+/** Carrousel **/
+#lightbox_modal {
+  background-color: $lightest;
+  .modal__header {
+    justify-content: flex-end;
+    .modal-title {
+      display: none;
+    }
+    .close_button {
+      justify-self: flex-end;
+      width: 42px;
+      svg {
+        width: 100%;
+        fill: $red-text;
+      }
+    }
+  }
+
+  .lightbox__wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    &__content {
+      height: 80vh;
+      width: 80vw;
+      position: relative;
+      .slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+        &.active {
+          display: block;
+        }
+
+        &__content {
+          width: 100%;
+          height: 100%;
+          border-radius: $border-radius;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          .image,
+          .video {
+            width: 100%;
+            height: 80%;
+            object-fit: contain;
+          }
+          .slide-title {
+            color: $red-text;
+            font-size: em(24);
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    &__controls {
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 48px;
+      svg {
+        width: 100%;
+        fill: $red-text;
+      }
+    }
+  }
+}
