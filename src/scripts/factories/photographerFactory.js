@@ -1,4 +1,4 @@
-export default function photographerFactory(data, likesSum) {
+export default function photographerFactory(data, likesSum, contactModel) {
   /***
    *
    * Defining variables
@@ -124,11 +124,6 @@ export default function photographerFactory(data, likesSum) {
   const updatePageTitle = () =>
     (document.title = `FishEye - Photographe ${name}`);
 
-  const updateContactModalTitle = () =>
-    (document.getElementById(
-      "modal-title"
-    ).innerHTML = `Contactez-moi ${name}`);
-
   function stickyNotification() {
     const $body = document.querySelector("body");
     $notification.classList.add("notification");
@@ -166,12 +161,20 @@ export default function photographerFactory(data, likesSum) {
     $notificationLikesWrapper.innerText = likesSum;
   }
 
+  function openContactModal() {
+    const $contactButton = document.querySelector(".contact_button");
+    $contactButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      contactModel.openModal();
+    });
+  }
+
   return {
     getUserCardDOM,
     getUserHeaderDOM,
     updatePageTitle,
-    updateContactModalTitle,
     stickyNotification,
     counterPhotographerLikes,
+    openContactModal,
   };
 }

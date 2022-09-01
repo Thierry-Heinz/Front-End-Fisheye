@@ -23,7 +23,7 @@ export default class LightBoxModal extends Modal {
       const slideId = `slide-${media._id}`;
       const slide = this.createSlide(
         media._type,
-        media._title,
+        media.title,
         slideId,
         media._url,
         media._src,
@@ -42,10 +42,10 @@ export default class LightBoxModal extends Modal {
     $slideContent.classList.add(`slide__content`);
     const $h4 = `<h4 id="title-${slideId}" class="slide-title" >${title}</h4>`;
     if (type === "image") {
-      var $media = `<img class="image" alt="${title}" src="${url + src}" />`;
+      var $media = `<img class="image" alt="${title}" src="${url}lightbox/${src}" />`;
     } else if (type === "video") {
       var $media = `<video controls class="video">>
-					<source src="${url + src}" type="video/mp4">
+					<source src="${url}lightbox/${src}" type="video/mp4">
 					Désolé votre navigateur ne supporte pas ce type de media
 				</video>`;
     } else {
@@ -148,7 +148,6 @@ export default class LightBoxModal extends Modal {
     const that = this;
 
     document.body.addEventListener("keydown", (e) => {
-      console.log(that.$modalWrapper.ariaHidden);
       if (that.$modalWrapper.ariaHidden == "false") {
         if (e.key == "ArrowLeft") {
           that.setActiveSlide(

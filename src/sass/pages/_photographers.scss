@@ -36,15 +36,18 @@
   .portrait {
     border-radius: $rounded;
     width: 200px;
-    height: 200px;
+    min-height: 200px;
     object-fit: cover;
     object-position: center;
   }
 }
 
+.photograph-controls {
+  margin: 50px 100px 0 100px;
+}
 //Media
 .photograph-media {
-  margin: 100px;
+  margin: 50px 100px 100px 100px;
   @include threeCol($rowGap: 50px, $colGap: 100px);
 }
 

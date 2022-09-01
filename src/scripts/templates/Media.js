@@ -1,10 +1,16 @@
+/**
+ *
+ * Media Template
+ *
+ */
+
 export default class Media {
   constructor(data, index, photographerModel, lightboxModel) {
     this._id = data.id;
     this._photographerId = data.photographerId;
-    this._title = data.title;
+    this.title = data.title;
     this.likes = data.likes;
-    this._date = data.date;
+    this.date = data.date;
     this._price = data.price;
     this._index = index;
     this.$wrapper = document.createElement("article");
@@ -12,8 +18,12 @@ export default class Media {
     this.lightboxModel = lightboxModel;
     this._mediaId = `media-${this._id}`;
     this._url = `assets/medias/`;
+    this.liked = false;
   }
 
+  /**
+   * Media creation
+   */
   createMediaCard(type, src) {
     this.$wrapper.classList.add("media-card", `${type}-card`);
     this.$wrapper.ariaLabel = `${type} Card`;
@@ -22,10 +32,8 @@ export default class Media {
     if (type === "image") {
       var $header = `
 			<header class="image-card__thumbnail media-card__header">
-			  <a class="image-card__link open-lightbox" data-index="${
-          this._index
-        }" href="#">
-				  <img class="image" alt="${this._title}" src="${this._url + src}" />
+			  <a class="image-card__link open-lightbox" data-index="${this._index}" href="#">
+				  <img class="image" alt="${this.title}" src="${this._url}gallery/${src}" />
 			  </a>
 			</header>`;
     } else if (type === "video") {
@@ -33,7 +41,7 @@ export default class Media {
 			<header class="video-card__thumbnail media-card__header">
 				<a class="video-card__link open-lightbox" data-index="${this._index}" href="#">
 						<video class="video" muted >
-					<source src="${this._url + src}" type="video/mp4">
+					<source src="${this._url}gallery/${src}" type="video/mp4">
 					Désolé votre navigateur ne supporte pas ce type de media
 				</video>
 				</a>
@@ -44,12 +52,14 @@ export default class Media {
 
     const $footer = `
 		<footer class="media-card__footer">
-			<h4 class="title" id="${this._mediaId}" >${this._title}</h4>
-      <div class="likes" aria-label="likes">
+			<h4 class="title" id="${this._mediaId}" >${this.title}</h4>
+      <div class="likes " aria-label="likes">
         <span class="likes-number">
         ${this.likes}
         </span>
-        <button class="like-button" aria-label="Aimer cette photo">
+        <button class="like-button ${
+          this.liked ? "liked" : ""
+        }" aria-label="Aimer cette photo">
           <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
             <title id="heartTitle">Liker</title>
             <use xlink:href="#heart" ></use>
@@ -65,6 +75,9 @@ export default class Media {
     return this.$wrapper;
   }
 
+  /**
+   * Media functionalities
+   */
   handleLikes() {
     const that = this;
     that.$wrapper
@@ -75,12 +88,14 @@ export default class Media {
           this.ariaLabel = "Aimer cette Photo";
           that.likes--;
           that.updateCardMediaLikes();
+          that.liked = false;
           that.photographerModel.counterPhotographerLikes("minus");
         } else {
           this.classList.add("liked");
           this.ariaLabel = "J'aime cette Photo";
           that.likes++;
           that.updateCardMediaLikes();
+          that.liked = true;
           that.photographerModel.counterPhotographerLikes("plus");
         }
       });

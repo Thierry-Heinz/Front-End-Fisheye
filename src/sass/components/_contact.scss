@@ -1,0 +1,28 @@
+#contact_modal {
+  .modal__wrapper__content {
+    height: min-content;
+    width: 60vw;
+    border-radius: $border-radius;
+    background-color: $tertiary;
+    padding: 35px;
+    margin-top: 100px;
+  }
+  .modal__header {
+    button {
+      svg {
+        fill: $lightest;
+      }
+      &:hover {
+        svg {
+          fill: $red-text;
+        }
+      }
+    }
+  }
+  .contact_button {
+    margin-top: 50px;
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+}

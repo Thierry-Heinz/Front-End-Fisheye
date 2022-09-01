@@ -3,6 +3,7 @@ import { PhotographersApi, MediaApi } from "../api/Api";
 import photographerFactory from "../factories/photographerFactory";
 import MediaFactory from "../factories/MediasFactory";
 import ModalFactory from "../factories/ModalFactory";
+import Sorter from "../templates/Sorter";
 
 async function init() {
   //Retrieve the photograph id in the urlParams
@@ -10,7 +11,6 @@ async function init() {
 
   // Retrieve all the medias
   const medias = await new MediaApi("./data/photographers.json").getMedias();
-  //const medias = await mediasApi.getMedias();
 
   // Retrieve all the photographers
   const photographers = await new PhotographersApi(
@@ -31,13 +31,15 @@ async function init() {
     0
   );
 
+  // Instantiate the lightbox and the contact modal
   const lightboxModel = new ModalFactory("lightbox");
+  const contactModel = new ModalFactory("contact");
 
   // Instantiate the photographer model
   const photographerModel = photographerFactory(
     currentPhotographer,
-    photographerLikesSum
-    //contactModel
+    photographerLikesSum,
+    contactModel
   );
 
   //Instantiate the media (and sort between Image and Video via the MediaFactory)
@@ -46,18 +48,25 @@ async function init() {
       new MediaFactory(media, index, photographerModel, lightboxModel)
   );
 
-  //Populate the media gallery and the lightbox
+  //Populate the media gallery
   MediasObj.forEach((media) => {
     $mediaWrapper.appendChild(media.createCard());
   });
 
+  // Instantiate the lightbox and populate the lightbox
   lightboxModel.createLightbox(MediasObj);
+  // Instantiate the contact modal
+  contactModel.createContactModal("Contactez " + currentPhotographer.name);
 
-  // Call all the methods to display the photograph Infos
+  // Instantiate the sorter form and insert it in the page
+  const sorterSection = new Sorter(MediasObj);
+  sorterSection.createSorterForm();
+
+  // Call all the methods to display the photograph Infos and functionalities
   photographerModel.getUserHeaderDOM();
   photographerModel.updatePageTitle();
-  // photographerModel.updateContactModalTitle();
   photographerModel.stickyNotification();
+  photographerModel.openContactModal();
 }
 
 init();

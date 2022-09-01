@@ -43,11 +43,16 @@ export default class Modal {
     return $div;
   }
   createModal(id, title, $bodyContent) {
-    this.$modalWrapper.classList.add("modal-container");
+    this.$modalWrapper.classList.add("modal__wrapper");
     this.$modalWrapper.id = id;
     this.$modalWrapper.setAttribute("tabindex", "-1");
     this.$modalWrapper.ariaHidden = true;
     this.$modalWrapper.setAttribute("aria-labelledby", "modal-title");
+
+    const $modalContent = document.createElement("div");
+    $modalContent.classList.add("modal__wrapper__content");
+    $modalContent.setAttribute("tabindex", "-1");
+    $modalContent.setAttribute("role", "dialog");
 
     const $header = this.createModalHeader();
     const $body = this.createModalBody();
@@ -57,7 +62,8 @@ export default class Modal {
     $header.append($title, $closeButton);
     $body.appendChild($bodyContent);
 
-    this.$modalWrapper.append($header, $body);
+    $modalContent.append($header, $body);
+    this.$modalWrapper.appendChild($modalContent);
     this.handleCloseButton();
     this.handleEscKey();
     this.$main.after(this.$modalWrapper);
@@ -69,7 +75,7 @@ export default class Modal {
   openModal() {
     this.$main.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "hidden";
-    this.$modalWrapper.style.display = "block";
+    this.$modalWrapper.style.display = "flex";
     this.$modalWrapper.setAttribute("aria-hidden", "false");
 
     const $closeButton = this.$modalWrapper.querySelector(".close_button");
@@ -80,6 +86,7 @@ export default class Modal {
     document.body.style.overflow = "visible";
     this.$modalWrapper.style.display = "none";
     this.$modalWrapper.setAttribute("aria-hidden", "true");
+    document.querySelector("header a").focus();
   }
   handleCloseButton() {
     const that = this;
@@ -94,6 +101,5 @@ export default class Modal {
     document.body.addEventListener("keydown", (e) =>
       e.key == "Escape" ? that.closeModal() : ""
     );
-    document.querySelector("header a").focus();
   }
 }

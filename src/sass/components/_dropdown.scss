@@ -1,1 +1,23 @@
 /** Dropdown **/
+.sorter-form {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+
+  #sorter-select {
+    border-radius: $border-radius;
+    background-color: $red-text;
+    color: $lightest;
+    padding: 16px 20px;
+    font-size: em(18);
+    font-weight: 700;
+    box-sizing: border-box;
+    cursor: pointer;
+    option {
+      &:hover {
+        background-color: $secondary;
+      }
+    }
+  }
+}
