@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -11,6 +11,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
+    <a href="#main" class="skip-main">Aller au contenu principal</a>
     <svg width="0" height="0">
       <symbol id="close_button" viewBox="0 0 42 42">
         <svg>
@@ -44,19 +45,15 @@
       </symbol>
     </svg>
     <header>
-      <a aria-label="Retourner vers la page d'accueil" href="/dist/index.html">
-        <img
-          src="assets/images/logo.png"
-          alt="FishEye Home Page"
-          class="logo"
-        />
+      <a aria-label="Retourner vers la page d'accueil" href="./index.html">
+        <img src="./assets/images/logo.png" alt="FishEye Logo" class="logo" />
       </a>
     </header>
     <main id="main" aria-hidden="false">
-      <section class="photograph-header">
+      <section class="photograph-header" tabindex="-1">
         <button type="button" class="contact_button">Contactez-moi</button>
       </section>
-      <section class="photograph-media"></section>
+      <section class="photograph-media" tabindex="-1"></section>
     </main>
   </body>
 </html>

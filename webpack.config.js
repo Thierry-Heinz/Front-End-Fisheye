@@ -17,7 +17,6 @@ module.exports = {
       chunks: "all",
     },
   },
-  /*
   module: {
     rules: [
       {
@@ -26,7 +25,7 @@ module.exports = {
         use: ["babel-loader"],
       },
     ],
-  },*/
+  },
   resolve: { extensions: [".js"] },
   plugins: [
     new HtmlWebpackPlugin({

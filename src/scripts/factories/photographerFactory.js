@@ -1,48 +1,52 @@
+/***
+ *
+ * Photographer Factory
+ *
+ *  */
+
 export default function photographerFactory(data, likesSum, contactModel) {
   /***
    *
-   * Defining variables
+   * Defining variables for Photographer page
    *
    *  */
 
   const { name, portrait, city, country, tagline, price, id } = data;
-  const picture = `assets/photographers/${portrait}`;
+  const picture = `./assets/photographers/${portrait}`;
 
   const $notification = document.createElement("div");
 
-  /***
-   *
-   * Defining element creation functions
-   *
-   *  */
+  /**
+   * Photographer page getter creation
+   */
 
   const createCard = () => {
     const $article = document.createElement("article");
     $article.classList.add("card", "card__photographer");
-    $article.ariaLabel = "Photographer Card";
-    $article.setAttribute("aria-labelledby", name);
+    $article.ariaLabel = name;
+    $article.setAttribute("aria-labelledby", "photograph-title-" + id);
     return $article;
   };
 
   const createCardHeader = () => {
     const $link = document.createElement("a");
     $link.classList.add("card__header");
-    $link.href = `/dist/photographer.html?id=${id}`;
+    $link.href = `./photographer.html?id=${id}`;
     $link.ariaLabel = `Voir la page du photographe ${name}`;
     return $link;
   };
   const createPortrait = () => {
     const $img = document.createElement("img");
     $img.setAttribute("src", picture);
-    $img.alt = name;
+    $img.alt = "portrait de " + name;
     $img.classList.add("portrait", "rounded");
     return $img;
   };
   const createPhotographerName = () => {
-    const $h2 = document.createElement("h2");
+    const $h2 = document.createElement("h3");
     $h2.textContent = name;
     $h2.classList.add("name");
-    $h2.id = name;
+    $h2.id = "photograph-title-" + id;
     return $h2;
   };
 
@@ -52,7 +56,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
     return $div;
   };
   const createLocation = () => {
-    const $h3 = document.createElement("h3");
+    const $h3 = document.createElement("h4");
     $h3.classList.add("location");
     $h3.textContent = `${city}, ${country}`;
     return $h3;
@@ -71,23 +75,28 @@ export default function photographerFactory(data, likesSum, contactModel) {
   };
 
   const createHeaderText = () => {
-    const div = document.createElement("div");
-    div.classList.add("photograph-header__text");
+    const $div = document.createElement("div");
+    $div.classList.add("photograph-header__text");
 
     const photographerName = createPhotographerName();
     const location = createLocation();
     const slogan = createSlogan();
 
-    div.append(photographerName, location, slogan);
+    $div.append(photographerName, location, slogan);
 
-    return div;
+    return $div;
   };
 
-  /***
-   *
-   * Defining get methods
-   *
-   *  */
+  const createHeaderSectionTitle = () => {
+    const $h2 = document.createElement("h2");
+    $h2.classList.add("photograph-header__title", "screen-reader");
+    $h2.textContent = "Entête de la page du photographe: " + name;
+    return $h2;
+  };
+
+  /**
+   * Photographer page getter creation
+   */
 
   function getUserCardDOM() {
     const $card = createCard();
@@ -107,17 +116,18 @@ export default function photographerFactory(data, likesSum, contactModel) {
   }
 
   function getUserHeaderDOM() {
-    const button = document.querySelector(".contact_button");
-    const headerText = createHeaderText();
-    const headerPortrait = createPortrait();
+    const $button = document.querySelector(".contact_button");
+    const $sectionHeader = createHeaderSectionTitle();
+    const $headerText = createHeaderText();
+    const $headerPortrait = createPortrait();
 
-    button.before(headerText);
-    button.after(headerPortrait);
+    $button.before($sectionHeader, $headerText);
+    $button.after($headerPortrait);
   }
 
   /**
    *
-   * Photographer single page modification functions
+   * Photographer page functions
    *
    */
 
@@ -132,8 +142,8 @@ export default function photographerFactory(data, likesSum, contactModel) {
     const $likes = `
     <div class="likes" aria-label="likes de ${name}">
       <span class="likes-number">${likesSum}</span>
-      <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
-          <title id="heartTitle">${likesSum} Likes</title>
+      <svg role="img" class="heart-icon" aria-labelledby="heartTitle-global">
+          <title id="heartTitle-global">${likesSum} Likes</title>
           <use xlink:href="#heart" ></use>
         </svg>
     </div>
@@ -171,6 +181,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
 
   return {
     getUserCardDOM,
+    name,
     getUserHeaderDOM,
     updatePageTitle,
     stickyNotification,

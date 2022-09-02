@@ -42,6 +42,15 @@ async function init() {
     contactModel
   );
 
+  const createMediaGalleryTitle = () => {
+    const $h2 = document.createElement("h2");
+    $h2.classList.add("photograph-media__title", "screen-reader");
+    $h2.textContent = "Gallery des médias de: " + currentPhotographer.name;
+    return $h2;
+  };
+
+  $mediaWrapper.appendChild(createMediaGalleryTitle());
+
   //Instantiate the media (and sort between Image and Video via the MediaFactory)
   const MediasObj = photographerMedias.map(
     (media, index) =>

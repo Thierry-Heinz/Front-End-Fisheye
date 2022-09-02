@@ -40,7 +40,7 @@ export default class LightBoxModal extends Modal {
 
     const $slideContent = document.createElement("div");
     $slideContent.classList.add(`slide__content`);
-    const $h4 = `<h4 id="title-${slideId}" class="slide-title" >${title}</h4>`;
+    const $h4 = `<h3 id="title-${slideId}" class="slide-title" >${title}</h3>`;
     if (type === "image") {
       var $media = `<img class="image" alt="${title}" src="${url}lightbox/${src}" />`;
     } else if (type === "video") {

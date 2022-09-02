@@ -4,6 +4,10 @@
   flex-direction: row;
   gap: 15px;
   align-items: center;
+  label {
+    font-weight: 700;
+    font-size: em(18);
+  }
 
   #sorter-select {
     border-radius: $border-radius;

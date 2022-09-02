@@ -15,20 +15,21 @@ export default class Modal {
    * Modal creation
    *
    */
-  createCloseButton() {
+  createCloseButton(id) {
     const $button = document.createElement("button");
     $button.ariaLabel = "Fermer la fenêtre";
     $button.classList.add("close_button");
-    const $icon = `<svg role="img" class="close_button-icon" aria-labelledby="close_button-title">
-            <title id="close_button-title">Fermer la fenêtre</title>
+    const $icon = `<svg role="img" class="close_button-icon" aria-labelledby="${id}-close_button-title">
+            <title id="${id}-close_button-title">Fermer la fenêtre</title>
             <use xlink:href="#close_button" ></use>
           </svg>`;
     $button.innerHTML = $icon;
     return $button;
   }
-  createModalTitle(title) {
+  createModalTitle(id, title) {
     const $h2 = document.createElement("h2");
     $h2.classList.add("modal-title");
+    $h2.id = id + "__title";
     $h2.textContent = title;
     return $h2;
   }
@@ -47,7 +48,7 @@ export default class Modal {
     this.$modalWrapper.id = id;
     this.$modalWrapper.setAttribute("tabindex", "-1");
     this.$modalWrapper.ariaHidden = true;
-    this.$modalWrapper.setAttribute("aria-labelledby", "modal-title");
+    this.$modalWrapper.setAttribute("aria-labelledby", id + "__title");
 
     const $modalContent = document.createElement("div");
     $modalContent.classList.add("modal__wrapper__content");
@@ -56,8 +57,8 @@ export default class Modal {
 
     const $header = this.createModalHeader();
     const $body = this.createModalBody();
-    const $title = this.createModalTitle(title);
-    const $closeButton = this.createCloseButton();
+    const $title = this.createModalTitle(id, title);
+    const $closeButton = this.createCloseButton(id);
 
     $header.append($title, $closeButton);
     $body.appendChild($bodyContent);

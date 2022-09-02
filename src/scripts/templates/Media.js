@@ -17,7 +17,7 @@ export default class Media {
     this.photographerModel = photographerModel;
     this.lightboxModel = lightboxModel;
     this._mediaId = `media-${this._id}`;
-    this._url = `assets/medias/`;
+    this._url = `./assets/medias/`;
     this.liked = false;
   }
 
@@ -52,16 +52,20 @@ export default class Media {
 
     const $footer = `
 		<footer class="media-card__footer">
-			<h4 class="title" id="${this._mediaId}" >${this.title}</h4>
-      <div class="likes " aria-label="likes">
-        <span class="likes-number">
-        ${this.likes}
-        </span>
+			<h3 class="title" id="${this._mediaId}" >${this.title}</h3>
+      <div class="likes" aria-label="likes de la photo ${this.title} par ${
+      this.photographerModel.name
+    }">
+        <span class="likes-number" aria-label="Nombre de likes de la photo ${
+          this.title
+        } par ${this.photographerModel.name}">${this.likes}</span>
         <button class="like-button ${
           this.liked ? "liked" : ""
         }" aria-label="Aimer cette photo">
-          <svg role="img" class="heart-icon" aria-labelledby="heartTitle">
-            <title id="heartTitle">Liker</title>
+          <svg role="img" class="heart-icon" aria-labelledby="heartTitle-${
+            this._mediaId
+          }">
+            <title id="heartTitle-${this._mediaId}">Liker</title>
             <use xlink:href="#heart" ></use>
           </svg>
         </button>

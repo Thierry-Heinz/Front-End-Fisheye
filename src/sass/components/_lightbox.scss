@@ -9,9 +9,10 @@
   .modal__header {
     justify-content: flex-end;
     .modal-title {
-      display: none;
+      @extend .screen-reader;
     }
     .close_button {
+      margin-top: 50px;
       justify-self: flex-end;
       svg {
         fill: $red-text;
@@ -54,6 +55,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          padding: 50px;
 
           .image,
           .video {
