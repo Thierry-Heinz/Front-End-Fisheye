@@ -17,7 +17,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
   const $notification = document.createElement("div");
 
   /**
-   * Photographer page getter creation
+   * Photographer page creation functions.
    */
 
   const createCard = () => {
@@ -89,6 +89,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
 
   const createHeaderSectionTitle = () => {
     const $h2 = document.createElement("h2");
+    $h2.id = "photograph-header__title";
     $h2.classList.add("photograph-header__title", "screen-reader");
     $h2.textContent = "Entête de la page du photographe: " + name;
     return $h2;
@@ -98,6 +99,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
    * Photographer page getter creation
    */
 
+  // Populate and display the photographer card on the homepage
   function getUserCardDOM() {
     const $card = createCard();
     const $cardHeader = createCardHeader();
@@ -115,12 +117,14 @@ export default function photographerFactory(data, likesSum, contactModel) {
     return $card;
   }
 
+  // Populate and display the header of the photographer page
   function getUserHeaderDOM() {
     const $button = document.querySelector(".contact_button");
     const $sectionHeader = createHeaderSectionTitle();
     const $headerText = createHeaderText();
     const $headerPortrait = createPortrait();
 
+    $button.setAttribute("aria-label", "Contactez " + name);
     $button.before($sectionHeader, $headerText);
     $button.after($headerPortrait);
   }
@@ -131,9 +135,11 @@ export default function photographerFactory(data, likesSum, contactModel) {
    *
    */
 
+  //update the title of the document
   const updatePageTitle = () =>
     (document.title = `FishEye - Photographe ${name}`);
 
+  // create the notification with the total likes number and the quote of the photographer
   function stickyNotification() {
     const $body = document.querySelector("body");
     $notification.classList.add("notification");
@@ -155,6 +161,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
     $body.appendChild($notification);
   }
 
+  // counter for the total of likes for the photographer
   function counterPhotographerLikes(operation) {
     if (operation == "minus") {
       likesSum -= 1;
@@ -165,12 +172,15 @@ export default function photographerFactory(data, likesSum, contactModel) {
     }
     updatePhotographerLikes();
   }
+
+  // update the total of likes for the photographer
   function updatePhotographerLikes() {
     const $notificationLikesWrapper =
       $notification.querySelector(".likes-number");
     $notificationLikesWrapper.innerText = likesSum;
   }
 
+  // open the contact modal by calling the method of the modal object
   function openContactModal() {
     const $contactButton = document.querySelector(".contact_button");
     $contactButton.addEventListener("click", function (e) {

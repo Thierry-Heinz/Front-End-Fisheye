@@ -1,3 +1,10 @@
+/***
+ *
+ * Sorter Api
+ *
+ */
+
+// Sort the given array of data by type of value.
 export default class SorterApi {
   async sorter(data, value) {
     if (value === "likes") {

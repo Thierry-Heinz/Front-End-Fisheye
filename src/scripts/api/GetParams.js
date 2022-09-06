@@ -1,3 +1,10 @@
+/**
+ *
+ * Get the url params
+ *
+ */
+
+//get the url param for the given param, contained in the window.location object (given at the instantiation of the class).
 class GetParams {
   constructor(windowLocation) {
     this._windowLocation = windowLocation;
@@ -8,6 +15,7 @@ class GetParams {
   }
 }
 
+// get the url param id.
 export class GetParamId extends GetParams {
   constructor(windowLocation) {
     super(windowLocation);

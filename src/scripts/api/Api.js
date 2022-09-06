@@ -1,3 +1,10 @@
+/***
+ *
+ * Api
+ *
+ */
+
+// fetch the json file and retrieve the right array
 class Api {
   constructor(url) {
     this._url = url;
@@ -21,6 +28,7 @@ class Api {
   }
 }
 
+// fetch the array containing all the photographers in the json
 export class PhotographersApi extends Api {
   constructor(url) {
     super(url);
@@ -30,6 +38,7 @@ export class PhotographersApi extends Api {
   }
 }
 
+// fetch the array containing all the medias in the json
 export class MediaApi extends Api {
   constructor(url) {
     super(url);

@@ -128,28 +128,92 @@ form textarea {
 }
 
 /** Dropdown **/
-.sorter-form {
+.dropdown {
+  position: relative;
+  width: 170px;
+}
+.dropdown:hover .dropdown-menu {
   display: flex;
-  flex-direction: row;
-  gap: 15px;
+}
+.dropdown .dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-.sorter-form label {
-  font-weight: 700;
-  font-size: 1.125em;
-}
-.sorter-form #sorter-select {
+  user-select: none;
+  border: none;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   background-color: #901c1c;
   color: #ffffff;
-  padding: 16px 20px;
-  font-size: 1.125em;
   font-weight: 700;
-  box-sizing: border-box;
-  cursor: pointer;
+  font-size: 1.125em;
+  padding: 23px 20px 20px 20px;
+  text-align: left;
+  font-family: "DM Sans", sans-serif;
 }
-.sorter-form #sorter-select option:hover {
+.dropdown .dropdown-menu {
+  z-index: 2000;
+  font-family: "DM Sans", sans-serif;
+  display: none;
+  position: absolute;
+  list-style: none;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  color: #ffffff;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.125em;
+  background-color: #901c1c;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.dropdown .dropdown-menu.show {
+  display: flex;
+}
+.dropdown .dropdown-menu .dropdown-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 14px;
+}
+.dropdown .dropdown-menu .dropdown-item::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff;
+  bottom: 0;
+  width: calc(100% - 40px);
+  left: 20px;
+}
+.dropdown .dropdown-menu .dropdown-item:not(:last-child) {
+  padding-bottom: 14px;
+}
+.dropdown .dropdown-menu .dropdown-item:first-child {
+  padding-top: 23px;
+}
+.dropdown .dropdown-menu .dropdown-item:last-child {
+  padding-bottom: 23px;
+}
+.dropdown .dropdown-menu .dropdown-item:last-child::after {
+  content: none;
+}
+.dropdown .dropdown-menu .dropdown-item:hover {
   background-color: #d3573c;
+}
+.dropdown .dropdown-arrow-icon {
+  fill: #ffffff;
+  width: 16px;
+  height: 10px;
+}
+.dropdown .dropdown-arrow-icon.down {
+  transform: rotate(180deg);
 }
 
 /** Cards **/
@@ -181,6 +245,9 @@ form textarea {
   font-size: 2.125em;
   padding: 0;
   margin: 0;
+}
+.card__photographer .card__header:hover .name {
+  color: #901c1c;
 }
 .card__photographer .card__body {
   justify-self: center;
@@ -501,6 +568,15 @@ form textarea {
 
 .photograph-controls {
   margin: 50px 100px 0 100px;
+}
+.photograph-controls .sorter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.photograph-controls .sorter-wrapper #listbox-label {
+  font-weight: 700;
+  font-size: 1.125em;
 }
 
 .photograph-media {

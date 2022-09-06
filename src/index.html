@@ -13,14 +13,24 @@
   <body>
     <a href="#main" class="skip-main">Aller au contenu principal</a>
     <header>
-      <a aria-current="page" href="./index.html">
+      <a
+        aria-current="page"
+        href="./index.html"
+        aria-label="Lien vers la page d'accueil"
+      >
         <img src="./assets/images/logo.png" alt="FishEye Logo" class="logo" />
       </a>
       <h1>Nos photographes</h1>
     </header>
     <main id="main">
-      <section class="photographer_section">
-        <h2 class="photographer_section_heading screen-reader">
+      <section
+        class="photographer_section"
+        aria-labelledby="photographer_section_heading"
+      >
+        <h2
+          id="photographer_section_heading"
+          class="photographer_section_heading screen-reader"
+        >
           Tous nos photographes
         </h2>
       </section>

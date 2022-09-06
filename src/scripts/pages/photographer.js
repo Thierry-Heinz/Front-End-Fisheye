@@ -5,6 +5,7 @@ import MediaFactory from "../factories/MediasFactory";
 import ModalFactory from "../factories/ModalFactory";
 import Sorter from "../templates/Sorter";
 
+//initialize the photographer page.
 async function init() {
   //Retrieve the photograph id in the urlParams
   const id = new GetParamId(window.location.search).getId();
@@ -41,9 +42,16 @@ async function init() {
     photographerLikesSum,
     contactModel
   );
+  // Call all the methods to display the photograph Infos and functionalities
+  photographerModel.getUserHeaderDOM();
+  photographerModel.updatePageTitle();
+  photographerModel.stickyNotification();
+  photographerModel.openContactModal();
 
+  // create the title for media gallery.
   const createMediaGalleryTitle = () => {
     const $h2 = document.createElement("h2");
+    $h2.id = "photograph-media__title";
     $h2.classList.add("photograph-media__title", "screen-reader");
     $h2.textContent = "Gallery des médias de: " + currentPhotographer.name;
     return $h2;
@@ -63,19 +71,13 @@ async function init() {
   });
 
   // Instantiate the lightbox and populate the lightbox
-  lightboxModel.createLightbox(MediasObj);
+  lightboxModel.createLightbox(MediasObj, currentPhotographer.name);
   // Instantiate the contact modal
   contactModel.createContactModal("Contactez " + currentPhotographer.name);
 
-  // Instantiate the sorter form and insert it in the page
+  // Instantiate the sorter dropdown and insert it in the page
   const sorterSection = new Sorter(MediasObj);
-  sorterSection.createSorterForm();
-
-  // Call all the methods to display the photograph Infos and functionalities
-  photographerModel.getUserHeaderDOM();
-  photographerModel.updatePageTitle();
-  photographerModel.stickyNotification();
-  photographerModel.openContactModal();
+  sorterSection.createSorter(currentPhotographer.name);
 }
 
 init();

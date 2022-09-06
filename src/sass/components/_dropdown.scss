@@ -1,27 +1,96 @@
 /** Dropdown **/
-.sorter-form {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  align-items: center;
-  label {
-    font-weight: 700;
-    font-size: em(18);
-  }
+.dropdown {
+  position: relative;
+  width: 170px;
 
-  #sorter-select {
+  &:hover {
+    .dropdown-menu {
+      display: flex;
+    }
+  }
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    border: none;
+    width: 100%;
+    height: 100%;
     border-radius: $border-radius;
     background-color: $red-text;
     color: $lightest;
-    padding: 16px 20px;
-    font-size: em(18);
     font-weight: 700;
-    box-sizing: border-box;
-    cursor: pointer;
-    option {
+    font-size: em(18);
+    padding: 23px 20px 20px 20px;
+    text-align: left;
+    font-family: "DM Sans", sans-serif;
+  }
+  .dropdown-menu {
+    z-index: 2000;
+    font-family: "DM Sans", sans-serif;
+    display: none;
+    position: absolute;
+    list-style: none;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    color: $lightest;
+    width: 100%;
+    font-weight: 700;
+    font-size: em(18);
+    background-color: $red-text;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    &.show {
+      display: flex;
+    }
+    .dropdown-item {
+      $dropdown-padding: 20px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding-left: $dropdown-padding;
+      padding-right: $dropdown-padding;
+      padding-top: 14px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        border: 1px solid $lightest;
+        bottom: 0;
+        width: calc(100% - $dropdown-padding * 2);
+        left: calc($dropdown-padding);
+      }
+
+      &:not(:last-child) {
+        padding-bottom: 14px;
+      }
+      &:first-child {
+        padding-top: calc($dropdown-padding + 3px);
+      }
+      &:last-child {
+        padding-bottom: calc($dropdown-padding + 3px);
+        &::after {
+          content: none;
+        }
+      }
       &:hover {
         background-color: $secondary;
       }
+    }
+  }
+
+  .dropdown-arrow-icon {
+    fill: $lightest;
+    width: 16px;
+    height: 10px;
+    &.down {
+      transform: rotate(180deg);
     }
   }
 }

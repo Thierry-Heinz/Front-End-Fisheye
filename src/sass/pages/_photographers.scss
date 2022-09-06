@@ -44,6 +44,15 @@
 
 .photograph-controls {
   margin: 50px 100px 0 100px;
+  .sorter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    #listbox-label {
+      font-weight: 700;
+      font-size: em(18);
+    }
+  }
 }
 //Media
 .photograph-media {

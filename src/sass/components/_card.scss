@@ -18,6 +18,11 @@
       padding: 0;
       margin: 0;
     }
+    &:hover {
+      .name {
+        color: $red-text;
+      }
+    }
   }
   .card__body {
     @include centered-content;
