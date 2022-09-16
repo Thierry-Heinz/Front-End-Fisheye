@@ -4,7 +4,12 @@
  *
  *  */
 
-export default function photographerFactory(data, likesSum, contactModel) {
+export default function photographerFactory(
+  page,
+  data,
+  likesSum,
+  contactModel
+) {
   /***
    *
    * Defining variables for Photographer page
@@ -43,11 +48,16 @@ export default function photographerFactory(data, likesSum, contactModel) {
     return $img;
   };
   const createPhotographerName = () => {
-    const $h2 = document.createElement("h3");
-    $h2.textContent = name;
-    $h2.classList.add("name");
-    $h2.id = "photograph-title-" + id;
-    return $h2;
+    var $title;
+    if (page === "homepage") {
+      $title = document.createElement("h3");
+    } else if (page === "photographer") {
+      $title = document.createElement("h1");
+    }
+    $title.textContent = name;
+    $title.classList.add("name");
+    $title.id = "photograph-title-" + id;
+    return $title;
   };
 
   const createCardBody = () => {
@@ -100,7 +110,7 @@ export default function photographerFactory(data, likesSum, contactModel) {
    */
 
   // Populate and display the photographer card on the homepage
-  function getUserCardDOM() {
+  function getUserCardDOM(page) {
     const $card = createCard();
     const $cardHeader = createCardHeader();
     const $cardBody = createCardBody();

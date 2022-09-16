@@ -38,12 +38,13 @@ async function init() {
 
   // Instantiate the photographer model
   const photographerModel = photographerFactory(
+    "photographer",
     currentPhotographer,
     photographerLikesSum,
     contactModel
   );
   // Call all the methods to display the photograph Infos and functionalities
-  photographerModel.getUserHeaderDOM();
+  photographerModel.getUserHeaderDOM("photographer");
   photographerModel.updatePageTitle();
   photographerModel.stickyNotification();
   photographerModel.openContactModal();
@@ -73,7 +74,7 @@ async function init() {
   // Instantiate the lightbox and populate the lightbox
   lightboxModel.createLightbox(MediasObj, currentPhotographer.name);
   // Instantiate the contact modal
-  contactModel.createContactModal("Contactez " + currentPhotographer.name);
+  contactModel.createContactModal("Contactez ", currentPhotographer.name);
 
   // Instantiate the sorter dropdown and insert it in the page
   const sorterSection = new Sorter(MediasObj);

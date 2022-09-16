@@ -12,7 +12,7 @@ async function displayData(photographers) {
 
   // populate the index page with the photographer card.
   photographers.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
+    const photographerModel = photographerFactory("homepage", photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });

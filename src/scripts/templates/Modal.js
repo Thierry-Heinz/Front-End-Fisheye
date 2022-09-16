@@ -90,7 +90,6 @@ export default class Modal {
 
     this.modalWrapper = this.$modalWrapper;
     this.$closeButton.focus();
-    console.log(document.activeElement);
   }
   //General method for closing the modal instance
   closeModal() {

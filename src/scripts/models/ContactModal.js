@@ -29,6 +29,7 @@ export default class ContactModal extends Modal {
     $field.id = id;
     $field.placeholder = value;
     $field.required = true;
+    $field.setAttribute("tabindex", "1");
 
     const $label = document.createElement("label");
     $label.id = "label-" + id;
@@ -40,7 +41,7 @@ export default class ContactModal extends Modal {
     return $fieldWrapper;
   }
 
-  createContactForm() {
+  createContactForm(photographerName) {
     const fields = [
       {
         id: "firstName",
@@ -67,6 +68,7 @@ export default class ContactModal extends Modal {
     this.$submitButton.classList.add("contact_button");
     this.$submitButton.ariaLabel = "Soumettre le formulaire de contact";
     this.$submitButton.textContent = "Envoyer";
+    this.$submitButton.setAttribute("tabindex", "1");
 
     fields.map((field) =>
       this.$form.appendChild(
@@ -75,19 +77,28 @@ export default class ContactModal extends Modal {
     );
 
     this.$form.appendChild(this.$submitButton);
+    this.$form.setAttribute("tabindex", "1");
+    this.$form.setAttribute(
+      "aria-label",
+      `Formulaire de contact de ${photographerName}`
+    );
     return this.$form;
   }
 
-  createContactModal(title) {
+  createContactModal(title, photographerName) {
     this.$contactWrapper.classList.add("contact__wrapper");
     const $contactContent = document.createElement("div");
     $contactContent.classList.add("contact__wrapper__content");
-    const $form = this.createContactForm();
+    const $form = this.createContactForm(photographerName);
 
     this.$contactWrapper.appendChild($form);
 
     this.logForm();
-    return this.createModal(this._id, title, this.$contactWrapper);
+    return this.createModal(
+      this._id,
+      title + photographerName,
+      this.$contactWrapper
+    );
   }
 
   /**

@@ -101,18 +101,24 @@ export default class Media {
       .addEventListener("click", function () {
         if (this.classList.contains("liked")) {
           this.classList.remove("liked");
-          this.ariaLabel = `Aimer la ${
-            type === "image" ? "Photo " : "Vidéo "
-          } ${this.title} par ${this.photographerModel.name}`;
+          thissetAttribute(
+            "aria-label",
+            `Aimer la ${type === "image" ? "Photo " : "Vidéo "} ${
+              that.title
+            } par ${that.photographerModel.name}`
+          );
           that.likes--;
           that.updateCardMediaLikes();
           that.liked = false;
           that.photographerModel.counterPhotographerLikes("minus");
         } else {
           this.classList.add("liked");
-          this.ariaLabel = `J'aime cette ${
-            type === "image" ? "Photo " : "Vidéo "
-          } ${this.title} par ${this.photographerModel.name}`;
+          this.setAttribute(
+            "aria-label",
+            `J'aime la ${type === "image" ? "Photo " : "Vidéo "} ${
+              that.title
+            } par ${that.photographerModel.name}`
+          );
           that.likes++;
           that.updateCardMediaLikes();
           that.liked = true;

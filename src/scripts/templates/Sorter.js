@@ -35,7 +35,7 @@ export default class Sorter {
     $dropdown.classList.add("dropdown");
     $dropdown.id = "sorter-select";
     $dropdown.setAttribute("aria-label", "Filtre des médias");
-    $dropdown.setAttribute("tabindex", "-1");
+    $dropdown.setAttribute("tabindex", "1");
     return $dropdown;
   }
   //create the button that toggle the dropdown
@@ -135,7 +135,7 @@ export default class Sorter {
     $spanLabel.textContent = "Trier par:";
 
     this.$wrapper.classList.add("photograph-controls");
-    this.$wrapper.setAttribute("tabindex", "-1");
+    this.$wrapper.setAttribute("tabindex", "0");
     this.$wrapper.setAttribute("aria-LabelledBy", "photograph-controls__title");
 
     this.$sorterWrapper.classList.add("sorter-wrapper");
@@ -200,7 +200,6 @@ export default class Sorter {
   // update the ria attributes of the list on the click.
   updateListSelected(items, itemObj) {
     items.forEach((item) => {
-      console.log(item);
       item.setAttribute("aria-selected", "false");
       item.setAttribute("aria-checked", "false");
     });
