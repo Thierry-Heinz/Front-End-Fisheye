@@ -66,10 +66,15 @@ export default function photographerFactory(
     return $div;
   };
   const createLocation = () => {
-    const $h3 = document.createElement("h4");
-    $h3.classList.add("location");
-    $h3.textContent = `${city}, ${country}`;
-    return $h3;
+    var $title;
+    if (page === "homepage") {
+      $title = document.createElement("h4");
+    } else if (page === "photographer") {
+      $title = document.createElement("h2");
+    }
+    $title.classList.add("location");
+    $title.textContent = `${city}, ${country}`;
+    return $title;
   };
   const createSlogan = () => {
     const $p = document.createElement("p");
@@ -110,7 +115,7 @@ export default function photographerFactory(
    */
 
   // Populate and display the photographer card on the homepage
-  function getUserCardDOM(page) {
+  function getUserCardDOM() {
     const $card = createCard();
     const $cardHeader = createCardHeader();
     const $cardBody = createCardBody();
