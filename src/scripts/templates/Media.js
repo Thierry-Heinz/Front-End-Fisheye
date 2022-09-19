@@ -101,7 +101,7 @@ export default class Media {
       .addEventListener("click", function () {
         if (this.classList.contains("liked")) {
           this.classList.remove("liked");
-          thissetAttribute(
+          this.setAttribute(
             "aria-label",
             `Aimer la ${type === "image" ? "Photo " : "Vidéo "} ${
               that.title
