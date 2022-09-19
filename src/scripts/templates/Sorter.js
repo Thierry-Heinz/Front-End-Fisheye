@@ -97,12 +97,10 @@ export default class Sorter {
 
       if (index === 0) {
         $li.setAttribute("aria-selected", "true");
-        $li.setAttribute("aria-checked", "true");
         $li.classList.add("active");
         $li.innerHTML += $icon;
       } else {
         $li.setAttribute("aria-selected", "false");
-        $li.setAttribute("aria-checked", "false");
       }
       this.$dropdownMenu.appendChild($li);
     });
