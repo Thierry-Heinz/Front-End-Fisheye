@@ -8,7 +8,8 @@ Avant de pouvoir consulter le projet, exectuer la commande:
 
 2. npm run build
 3. utiliser un live server sur le dossier /dist
-   la commande build transpile le projet dans le dossier /dist compressé
+
+la commande build transpile le projet dans le dossier /dist compressé
 
 Pour voir le projet en mode développement:
 
@@ -16,8 +17,8 @@ Pour voir le projet en mode développement:
 
 2. npm run watch
 3. utiliser un live server sur le dossier /dist
-   la commande watch sert le projet dans le dossier /dist avec un code non compressé
+
+la commande watch sert le projet dans le dossier /dist avec un code non compressé
 
 ### Autres
-
 Projet en ligne à cette adresse https://studioklatz.com/oc/fisheye/
