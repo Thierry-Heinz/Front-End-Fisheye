@@ -201,6 +201,10 @@ export default function photographerFactory(
     $contactButton.addEventListener("click", function (e) {
       e.preventDefault();
       contactModel.openModal();
+      const closeButton = document.querySelector(
+        "#contact_modal .close_button"
+      );
+      closeButton.focus();
     });
   }
 

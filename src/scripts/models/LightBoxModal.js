@@ -119,6 +119,8 @@ export default class LightBoxModal extends Modal {
   openLightbox(index) {
     this.setActiveSlide(index);
     this.openModal();
+    const closeButton = document.querySelector("#lightbox_modal .close_button");
+    closeButton.focus();
   }
 
   // set the active class on the right slide, given the exact index

@@ -212,7 +212,7 @@ export default class Sorter {
       that.$dropdownMenu.querySelectorAll(".dropdown-item");
     $dropdownItems.forEach((item) => {
       item.addEventListener("click", function (e) {
-        const text = item.querySelector(".text-holder").textContent;
+        const text = item.querySelector(".text-holder").innerText;
         that.sorterMedias(item.dataset.value);
         that.updateToggleDropdown(item.dataset.value, text);
         that.updateListSelected($dropdownItems, item);
@@ -262,13 +262,14 @@ export default class Sorter {
 
           if ("Enter" == e.code) {
             e.preventDefault();
+            const textEl = activeEl.querySelector(".text-holder");
+            if (textEl) {
+              var text = activeEl.querySelector(".text-holder").textContent;
+            }
             that.sorterMedias(activeEl.dataset.value);
             that.$dropdownMenu.classList.toggle("show");
             that.$dropdownToggle.setAttribute("aria-expanded", "false");
-            that.updateToggleDropdown(
-              activeEl.dataset.value,
-              activeEl.textContent
-            );
+            that.updateToggleDropdown(activeEl.dataset.value, text);
             that.$dropdownToggle.focus();
           }
         }

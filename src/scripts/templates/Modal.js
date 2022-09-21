@@ -84,12 +84,10 @@ export default class Modal {
   // General method for opening the modal instance.
   openModal() {
     this.$main.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "hidden";
     this.$modalWrapper.style.display = "flex";
     this.$modalWrapper.setAttribute("aria-hidden", "false");
-
     this.modalWrapper = this.$modalWrapper;
-    this.$closeButton.focus();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
   //General method for closing the modal instance
   closeModal() {
